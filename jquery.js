@@ -81,9 +81,18 @@ function FillTable(json){
 }
 
 function DeleteClick(id){
-    //alert(id);
-  ids.push(id);
-  FillTable(ids);
+//     //alert(id);
+//   ids.push(id);
+//   FillTable(ids);
+// alert("zdohni no zdelay");
+//     $(this).parent().parent().remove();
+
+// (function(){
+//     $("#tableCurrency").on('click')
+// })
+
+//zanachka
+// https://stackoverflow.com/questions/33307101/deleting-row-in-table-using-jquery
 }
 
 async function GetApi(){
