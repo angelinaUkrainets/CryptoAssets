@@ -62,9 +62,11 @@ function FillTable(json){
         td7.innerHTML = json[i].minConf;
         let td8 =document.createElement("button");
         td8.innerHTML = "Delete";
-        td8.addEventListener("click", function(){
-            DeleteClick(json[i].id);
-        })
+        td8.addEventListener("click", function DeleteClick(){
+            // DeleteClick(json[i].id);
+            let row = this.parentNode;
+            row.parentNode.removeChild(row);
+        });
 
     row.appendChild(td1);
     row.appendChild(td2);
@@ -81,6 +83,9 @@ function FillTable(json){
 }
 
 function DeleteClick(id){
+    $('#tableCurrency').on('click', function (){
+        $(this).closest('tr').remove();
+    });
 //     //alert(id);
 //   ids.push(id);
 //   FillTable(ids);
