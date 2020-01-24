@@ -1,27 +1,36 @@
-$(document).ready(function(){
-    $("#search").keyup(function(){
-        search_table($(this).val());
+// $(document).ready(function(){
+//     $("#search").keyup(function(){
+//         search_table($(this).val());
 
+//     });
+
+//     function search_table(value){
+//         $("#tableCurrency tr").each(function(){
+//             var found = 'false';
+//             $(this).each(function(){
+//                 if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0){
+//                     found = 'true';
+//                     console.log("true");
+//                 }
+//             });
+//             if(found === "true"){
+//                 $(this).show();
+//             }
+//             else{
+//                 $(this).hide();
+//             }
+//         })
+//     }
+// });
+
+$(function(){
+    $("#search").on("keyup", function() {
+      let value = $(this).val().toLowerCase();
+      $("#tableCurrency tbody tr ").filter(function() {
+        $(this).toggle($(this).children('.nameTd').text().toLowerCase().indexOf(value) > -1);       
+      });
     });
-
-    function search_table(value){
-        $("#tableCurrency tr").each(function(){
-            var found = 'false';
-            $(this).each(function(){
-                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0){
-                    found = 'true';
-                    console.log("true");
-                }
-            });
-            if(found === "true"){
-                $(this).show();
-            }
-            else{
-                $(this).hide();
-            }
-        })
-    }
-});
+  });
 
 
 function FillTable(json){
@@ -29,7 +38,6 @@ function FillTable(json){
 
     first : for(let i in json){
         if(json[i] instanceof Object){
-                continue first;
         
         let row = document.createElement("tr"); 
         let td1 = document.createElement("td");
@@ -38,6 +46,7 @@ function FillTable(json){
         td2.innerHTML = i;
         let td3 = document.createElement("td");
         td3.innerHTML = json[i].name;
+        td3.classList.add("nameTd");
         let td4 = document.createElement("td");
         td4.innerHTML = json[i].humanType;
         let td5 = document.createElement("td");
