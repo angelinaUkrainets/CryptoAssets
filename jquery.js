@@ -1,13 +1,3 @@
-// function ClickSearch(){
-// $(function(){
-//     $('#searchButton').on("keyup", function(){
-//         let data = $(this).val().toLowerCase();
-//         $("#tableCurrency tr tbody").filter(function(){
-//             $(this).toggle($(this).children(".name").text().toLowerCase().indexOf(data) > -1);
-//         })
-//     })
-// })}
-
 $(document).ready(function(){
     $("#search").keyup(function(){
         search_table($(this).val());
@@ -36,14 +26,10 @@ $(document).ready(function(){
 
 function FillTable(json){
     let counter = 1;
-    //let json = GetApi();
 
     first : for(let i in json){
         if(json[i] instanceof Object){
-            
-        // for(let t = 0; t < array.length; t++){
-        //     if(json[i].id === array[t])
-        //         continue first;
+                continue first;
         
         let row = document.createElement("tr"); 
         let td1 = document.createElement("td");
@@ -63,7 +49,6 @@ function FillTable(json){
         let td8 =document.createElement("button");
         td8.innerHTML = "Delete";
         td8.addEventListener("click", function DeleteClick(){
-            // DeleteClick(json[i].id);
             let row = this.parentNode;
             row.parentNode.removeChild(row);
         });
@@ -82,31 +67,11 @@ function FillTable(json){
     }}
 }
 
-function DeleteClick(id){
-    $('#tableCurrency').on('click', function (){
-        $(this).closest('tr').remove();
-    });
-//     //alert(id);
-//   ids.push(id);
-//   FillTable(ids);
-// alert("zdohni no zdelay");
-//     $(this).parent().parent().remove();
-
-// (function(){
-//     $("#tableCurrency").on('click')
-// })
-
-//zanachka
-// https://stackoverflow.com/questions/33307101/deleting-row-in-table-using-jquery
-}
-
 async function GetApi(){
     let apiUrl = "https://poloniex.com/public?command=returnCurrencies";
     let response = await fetch(apiUrl);
     let result =await response.json();
-   // console.log(result);
     FillTable(result);
-   //return result;
 }
 
 let ids = [];
